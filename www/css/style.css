@@ -1,6 +1,6 @@
 body{
 height: 94vh;
- background-image: linear-gradient(to bottom, SALMON,red);
+ background-image: linear-gradient(to bottom, SALMON,red, black);
 }
 h1{
 font-family: 'Russo One', sans-serif;
@@ -19,4 +19,12 @@ background-image: url("../fonts/abc1.png");
 margin-top: 5vh;
 margin-left:38vw;
 
+}
+.highlight{
+  margin-top: 30vh;
+  font-family: ;
+  color: white;
+  font-size: 15px;
+
+}
 }
