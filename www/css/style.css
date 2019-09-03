@@ -1,2 +1,22 @@
-/**/
+body{
+height: 94vh;
+ background-image: linear-gradient(to bottom, SALMON,red);
+}
+h1{
+font-family: 'Russo One', sans-serif;
+text-align:center;
+color: white;
+}
+@font-face {
+  font-family: myFirstFont;
+  src: url("../fonts/abc.ttf");
+}
+.estiloLink{
+  background-position:  center;
+  background-size: 95%;
+  background-repeat: no-repeat;
+background-image: url("../fonts/abc1.png");
+margin-top: 5vh;
+margin-left:38vw;
 
+}
