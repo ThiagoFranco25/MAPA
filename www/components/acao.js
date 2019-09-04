@@ -1,46 +1,35 @@
-L.mapquest.key = 'KEY';
-var baseLayer = L.mapquest.tileLayer('dark');
+$(document).on("click","#mapa",function(){
 
-L.mapquest.geocoding().geocode(['New York, NY'], showMap);
-
-function showMap(err, data) {
-  var map = createMap();
-  map.addControl(L.mapquest.control());
-  addLayerControl(map);
-}
-
-function createMap() {
-  var map = L.mapquest.map('map', {
-    center: [40.7237, -73.9825],
-    zoom: 14,
-    layers: baseLayer
-  });
-  return map;
-}
-
-function addLayerControl(map) {
-  L.control.layers({
-    'Map': L.mapquest.tileLayer('map'),
-    'Satellite': L.mapquest.tileLayer('satellite'),
-    'Hybrid': L.mapquest.tileLayer('hybrid'),
-    'Light': L.mapquest.tileLayer('light'),
-    'Dark': baseLayer
-  }, {}, { position: 'topleft'}).addTo(map);
-}
 function checkConnection() {
     var networkState = navigator.connection.type;
-
-    var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.CELL]     = 'Cell generic connection';
-    states[Connection.NONE]     = 'No network connection';
-
-    alert('Connection type: ' + states[networkState]);
+    if(navigator.connection.type == Connection.NONE){
+      alert('No network connection')
+      navigator.notification.beep(3);
+      navigator.vibrate(6000);
+    }
 }
 
 checkConnection();
+
+navigator.notification.beep(1);
+
+var onSuccess = function(position) {
+
+L.mapquest.key = 'D3o5ypIT0OYsPf8GizJwViyaZAHmrlcT';
+
+// 'map' refers to a <div> element with the ID map
+L.mapquest.map('map', {
+  center: [position.coords.latitude, position.coords.longitude],
+  layers: L.mapquest.tileLayer('map'),
+  zoom: 15,
+});
+};
+
+function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
+navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+});
